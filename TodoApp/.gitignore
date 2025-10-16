@@ -1,0 +1,52 @@
+# Virtual environments
+env/
+venv/
+devops-env/
+.venv/
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pycache
+*.pkl
+
+# Environment files
+.env
+*.env
+
+# IDE / Editor specific
+.vscode/
+.idea/
+*.iml
+
+# Alembic migrations cache
+alembic/versions/__pycache__/
+alembic/*.log
+
+# SQLite or other local DB files
+*.db
+*.sqlite3
+
+# Logs
+*.log
+
+# Test / coverage files
+htmlcov/
+.tox/
+.coverage
+coverage.xml
+*.cover
+*.pytest_cache/
+pytestdebug.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Backup or temporary files
+*.bak
+*.swp
+*.tmp
+*.old
