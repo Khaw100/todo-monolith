@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Todos - Todo App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/base.css">
+  <script src="../static/js/base.js" defer></script>
+  <script src="../static/js/todos.js" defer></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("navbar-container").innerHTML = html);
+  </script>
+
+  <div class="container mt-5">
+    <div class="card text-center">
+      <div class="card-header">
+        Your Todo's!
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">List of your todo's!</h5>
+        <p class="card-text">Information regarding stuff that needs to be completed</p>
+
+        <table class="table table-hover" id="todoTable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Info</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="todoBody">
+            <!-- Populated dynamically via JS -->
+          </tbody>
+        </table>
+
+        <a href="add-todo.html" class="btn btn-primary">Add a new todo!</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -43,16 +43,16 @@ def get_db():
 
 
 db_dependency = Annotated[Session, Depends(get_db)]
-templates = Jinja2Templates(directory='TodoApp/templates')
+# templates = Jinja2Templates(directory='../todo-fe/templates')s
 
 ### Pages ###
-@router.get("/login-page")
-def render_login_page(request: Request):
-    return templates.TemplateResponse('login.html', {"request": request})
+# @router.get("/login-page")
+# def render_login_page(request: Request):
+#     return templates.TemplateResponse('login.html', {"request": request})
 
-@router.get("/register-page")
-def render_register_page(request: Request):
-    return templates.TemplateResponse('register.html', {"request": request})
+# @router.get("/register-page")
+# def render_register_page(request: Request):
+#     return templates.TemplateResponse('register.html', {"request": request})
 
 
 ### Endpoints ###

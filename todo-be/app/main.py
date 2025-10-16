@@ -4,12 +4,26 @@ from app.database import engine
 from app.routers import auth, todos, admin, users
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",   # React / JS FE
+        "http://127.0.0.1:5500",   # For static HTML preview
+        "http://localhost:5500" 
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 models.Base.metadata.create_all(bind=engine)
 
-app.mount('/static', StaticFiles(directory="app/static"), name="static")
+# app.mount('/static', StaticFiles(directory="../todo-fe/static"), name="static")
 
 @app.get("/")
 def test(request: Request):
