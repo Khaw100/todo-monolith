@@ -1,5 +1,5 @@
     
-    const API_BASE_URL = "http://127.0.0.1:8000";
+    window.API_BASE_URL = "http://127.0.0.1:8080";
     // Add Todo JS
     const todoForm = document.getElementById('todoForm');
     if (todoForm) {
@@ -78,7 +78,7 @@
             });
 
             if (response.ok) {
-                window.location.href = `templates/todo`; // Redirect to the todo page
+                window.location.href = `todo.html`; // Redirect to the todo page
             } else {
                 // Handle error
                 const errorData = await response.json();
@@ -109,7 +109,7 @@
 
                 if (response.ok) {
                     // Handle success
-                    window.location.href = `${API_BASE_URL}/todos/todo-page`; // Redirect to the todo page
+                    window.location.href = `todo-page.html`; // Redirect to the todo page
                 } else {
                     // Handle error
                     const errorData = await response.json();
@@ -124,48 +124,48 @@
         
     }
 
-    // Login JS
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', async function (event) {
-            event.preventDefault();
+    // // Login JS
+    // const loginForm = document.getElementById('loginForm');
+    // if (loginForm) {
+    //     loginForm.addEventListener('submit', async function (event) {
+    //         event.preventDefault();
 
-            const form = event.target;
-            const formData = new FormData(form);
+    //         const form = event.target;
+    //         const formData = new FormData(form);
 
-            const payload = new URLSearchParams();
-            for (const [key, value] of formData.entries()) {
-                payload.append(key, value);
-            }
+    //         const payload = new URLSearchParams();
+    //         for (const [key, value] of formData.entries()) {
+    //             payload.append(key, value);
+    //         }
 
-            try {
-                const response = await fetch(`${API_BASE_URL}/auth/token`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: payload.toString()
-                });
+    //         try {
+    //             const response = await fetch(`${API_BASE_URL}/auth/token`, {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/x-www-form-urlencoded'
+    //                 },
+    //                 body: payload.toString()
+    //             });
 
-                if (response.ok) {
-                    // Handle success (e.g., redirect to dashboard)
-                    const data = await response.json();
-                    // Delete any cookies available
-                    logout();
-                    // Save token to cookie
-                    document.cookie = `access_token=${data.access_token}; path=/`;
-                    window.location.href = `templates/todo`; // Change this to your desired redirect page
-                } else {
-                    // Handle error
-                    const errorData = await response.json();
-                    alert(`Error: ${errorData.detail}`);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            }
-        });
-    }
+    //             if (response.ok) {
+    //                 // Handle success (e.g., redirect to dashboard)
+    //                 const data = await response.json();
+    //                 // Delete any cookies available
+    //                 logout();
+    //                 // Save token to cookie
+    //                 document.cookie = `access_token=${data.access_token}; path=/`;
+    //                 window.location.href = `todo.html`; // Change this to your desired redirect page
+    //             } else {
+    //                 // Handle error
+    //                 const errorData = await response.json();
+    //                 alert(`Error: ${errorData.detail}`);
+    //             }
+    //         } catch (error) {
+    //             console.error('Error:', error);
+    //             alert('An error occurred. Please try again.');
+    //         }
+    //     });
+    // }
 
     // Register JS
     const registerForm = document.getElementById('registerForm');
@@ -193,7 +193,7 @@
             };
 
             try {
-                const response = await fetch(`${API_BASE_URL}/auth`, {
+                const response = await fetch(`${API_BASE_URL}/auth/`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -202,7 +202,7 @@
                 });
 
                 if (response.ok) {
-                    window.location.href = `templates/login`;
+                    window.location.href = `login.html`;
                 } else {
                     // Handle error
                     const errorData = await response.json();
@@ -249,5 +249,5 @@
         }
     
         // Redirect to the login page
-        window.location.href = `templates/login`;
+        window.location.href = `login.html`;
     };
