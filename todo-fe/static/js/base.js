@@ -1,3 +1,5 @@
+    
+    const API_BASE_URL = "http://127.0.0.1:8000";
     // Add Todo JS
     const todoForm = document.getElementById('todoForm');
     if (todoForm) {
@@ -16,7 +18,7 @@
             };
 
             try {
-                const response = await fetch('/todos/todo', {
+                const response = await fetch(`${API_BASE_URL}/todos/todo`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -66,7 +68,7 @@
 
             console.log(`${todoId}`)
 
-            const response = await fetch(`/todos/todo/${todoId}`, {
+            const response = await fetch(`${API_BASE_URL}/todos/todo/${todoId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +78,7 @@
             });
 
             if (response.ok) {
-                window.location.href = '/todos/todo-page'; // Redirect to the todo page
+                window.location.href = `templates/todo`; // Redirect to the todo page
             } else {
                 // Handle error
                 const errorData = await response.json();
@@ -98,7 +100,7 @@
                     throw new Error('Authentication token not found');
                 }
 
-                const response = await fetch(`/todos/todo/${todoId}`, {
+                const response = await fetch(`${API_BASE_URL}/todos/todo/${todoId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -107,7 +109,7 @@
 
                 if (response.ok) {
                     // Handle success
-                    window.location.href = '/todos/todo-page'; // Redirect to the todo page
+                    window.location.href = `${API_BASE_URL}/todos/todo-page`; // Redirect to the todo page
                 } else {
                     // Handle error
                     const errorData = await response.json();
@@ -137,7 +139,7 @@
             }
 
             try {
-                const response = await fetch('/auth/token', {
+                const response = await fetch(`${API_BASE_URL}/auth/token`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -152,7 +154,7 @@
                     logout();
                     // Save token to cookie
                     document.cookie = `access_token=${data.access_token}; path=/`;
-                    window.location.href = '/todos/todo-page'; // Change this to your desired redirect page
+                    window.location.href = `templates/todo`; // Change this to your desired redirect page
                 } else {
                     // Handle error
                     const errorData = await response.json();
@@ -191,7 +193,7 @@
             };
 
             try {
-                const response = await fetch('/auth', {
+                const response = await fetch(`${API_BASE_URL}/auth`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -200,7 +202,7 @@
                 });
 
                 if (response.ok) {
-                    window.location.href = '/auth/login-page';
+                    window.location.href = `templates/login`;
                 } else {
                     // Handle error
                     const errorData = await response.json();
@@ -247,5 +249,5 @@
         }
     
         // Redirect to the login page
-        window.location.href = '/auth/login-page';
+        window.location.href = `templates/login`;
     };

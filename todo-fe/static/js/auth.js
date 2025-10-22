@@ -1,5 +1,5 @@
 // auth.js
-const API_BASE_URL = "http://127.0.0.1:8080";
+const API_BASE_URL = "http://127.0.0.1:8000";
 
 async function loginUser(event) {
   event.preventDefault();
@@ -21,7 +21,7 @@ async function loginUser(event) {
     const data = await res.json();
     localStorage.setItem("access_token", data.access_token);
     alert("Login successful!");
-    window.location.href = "/templates/todo.html";
+    window.location.href = `templates/todo`;
   } else {
     alert("Invalid credentials");
   }
@@ -56,7 +56,7 @@ async function registerUser(event) {
   const result = await res.json();
   if (res.ok) {
     alert("Registration successful!");
-    window.location.href = "/templates/login.html";
+    window.location.href = `templates/login`;
   } else {
     alert(`Error: ${result.detail || result.message}`);
   }

@@ -1,3 +1,5 @@
+
+const API_BASE_URL = "http://127.0.0.1:8000";
 document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("access_token");
   if (!token) {
@@ -6,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  const res = await fetch("http://127.0.0.1:8080/todos/all", {
+  const res = await fetch(`${API_BASE_URL}/todos/all`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
@@ -39,7 +41,7 @@ function editTodo(id) {
 }
 
 
-fetch("http://127.0.0.1:8020/healthy")
-  .then(res => res.json())
-  .then(data => console.log("Backend says:", data))
-  .catch(err => console.error("Error:", err));
+// fetch("http://127.0.0.1:8020/healthy")
+//   .then(res => res.json())
+//   .then(data => console.log("Backend says:", data))
+//   .catch(err => console.error("Error:", err));
